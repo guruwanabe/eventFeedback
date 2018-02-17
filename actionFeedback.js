@@ -61,7 +61,7 @@ ActionFeedBack.prototype = {
 			timestamp: event.timeStamp
 	    }
 	}, 
-	createFeedBackElement(timestamp){
+	createFeedBackElement: function(timestamp){
 		var clickArea = document.createElement('div');
 		clickArea.setAttribute('id', timestamp);
 		clickArea.setAttribute('data-click-feedback', '');
@@ -71,7 +71,7 @@ ActionFeedBack.prototype = {
 
 		return setPosition($(clickArea), position.x, position.y);
 	},
-	removeFeedBackElement(timestamp){
+	removeFeedBackElement: function(timestamp){
 		return document.getElementById(timestamp).remove();
 	}
 
@@ -122,3 +122,47 @@ ActionFeedBack.prototype = {
         }
     })
 };
+
++function ($) {
+	"use strict";
+	/**
+	 * Plugin
+	 *
+	 * @param $option {object || string}
+	 * @return function
+	 *
+	 * =======================
+	 */
+	function Plugin($option) {
+		return this.each(function () {
+			var self    = $(this);
+			var data    = self.data("click-feedback");
+			var options = $.extend({}, ActionFeedBack.prototype.DEFAULTS, self.data(), typeof $option == "object" && $option);
+
+			if (!data) {
+				self.data("click-feedback", (data = new ActionFeedBack(this, options)));
+			}
+			if (typeof $option == "string"){
+				data[options]($option);
+			}
+		});
+	}
+
+	var old = $.fn.actionFeedback;
+
+	$.fn.actionFeedback             = Plugin;
+	$.fn.actionFeedback.Constructor = ActionFeedBack;
+
+	/**
+	 * actionFeedback No Conflict
+	 *
+	 * @return object
+	 *
+	 * =======================
+	 */
+	$.fn.actionFeedback.noConflict = function () {
+		$.fn.actionFeedback = old;
+		return this;
+	};
+
+}(jQuery);
