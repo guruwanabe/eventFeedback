@@ -55,12 +55,6 @@ ActionFeedBack.prototype = {
 	getEventPosition: function($event, $offset) {
 	    $offset = ($offset || 0);
 	    var event = $event;
-
-	    if('ontouchstart' in window || navigator.maxTouchPoints){
-			var eventScreen = $event.originalEvent.touches[0];
-			event.pageX = eventScreen.pageX;
-			event.pageY = eventScreen.pageY
-	    }
 	    return {
 			x: (event.pageX) - $offset,
 			y: (event.pageY) - $offset,
