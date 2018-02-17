@@ -1,4 +1,5 @@
-function ActionFeedBack($element, $timeout){
+function ActionFeedBack($element, $options){
+  this.options = $.extend( {}, ActionFeedBack.prototype.DEFAULTS, $options)		
   this.element = $($element) || $(document.body);
   this.timeout = $timeout || ($timeout = 1000);
   this.eventHandler = 'click';
@@ -6,16 +7,16 @@ function ActionFeedBack($element, $timeout){
 }
 
 ActionFeedBack.prototype = {
+	DEFAULTS: {
+		lockEvent: false,
+		feedBackClass: 'feedback'
+	}.
 	setListener: function($timeout){
-		if('ontouchstart' in window || navigator.maxTouchPoints){
-		   this.eventHandler = 'touchstart'
-		}
-
 		this.element.on(this.eventHandler, function(event){
 			var self = $(this);
-			/*if (t.data('feedback-loading') == true) {
-			return; // do nothing
-			}*/
+			if (this.options.lockEvent && t.data('feedback-loading') == true) {
+                return; // do nothing, bubble away
+            }
 			this.toggleFeedback(self, event, true);
 			if($.support.transition){
 				self.one('bsTransitionEnd', function () {
@@ -33,13 +34,11 @@ ActionFeedBack.prototype = {
 		if($state){
 		    this.createFeedBackElement(position.timestamp);
 		    element.data('feedback-loading', $state);
-		    element.addClass('feedback-active');
 		    element.attr('aria-pressed', $state);
 		}else{
-		    element.removeClass('feedback-active');
+		    element.removeClass(this.options.feedBackClass+'-active');
 		    element.attr('aria-pressed', false);
 		    element.data('feedback-loading', false);
-		    element.attr('style', '');
 		    this.removeFeedBackElement(position.timestamp);
 		}
 	},
@@ -72,7 +71,7 @@ ActionFeedBack.prototype = {
 		var clickArea = document.createElement('div');
 		clickArea.setAttribute('id', timestamp);
 		clickArea.setAttribute('data-click-feedback', '');
-		clickArea.setAttribute('class', 'feedback-active');
+		clickArea.setAttribute('class', this.options.feedBackClass+'-active');
 
 		objBody.append(clickArea);
 
