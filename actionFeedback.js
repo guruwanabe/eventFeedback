@@ -64,7 +64,7 @@ ActionFeedBack.prototype = {
 	createFeedBackElement: function(timestamp){
 		var clickArea = document.createElement('div');
 		clickArea.setAttribute('id', timestamp);
-		clickArea.setAttribute('data-click-feedback', '');
+		clickArea.setAttribute('data-click-'+this.options.feedBackClass, '');
 		clickArea.setAttribute('class', this.options.feedBackClass+'-active');
 
 		objBody.append(clickArea);
