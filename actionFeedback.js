@@ -41,7 +41,7 @@ ActionFeedBack.prototype = {
             element.attr('aria-pressed', false);
             element.data('feedback-loading', false);
             element.attr('style', '');
-            this.removeFeedBackEkement(position.timestamp);
+            this.removeFeedBackElement(position.timestamp);
         }
     },
 	setPosition: function(el, $x, $y){
@@ -73,7 +73,7 @@ ActionFeedBack.prototype = {
 
         return setPosition($(clickArea), position.x, position.y);
 	},
-	removeFeedBackEkement(timestamp){
+	removeFeedBackElement(timestamp){
 		return document.getElementById(timestamp).remove();
 	}
 
