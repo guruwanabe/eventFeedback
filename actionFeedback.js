@@ -9,7 +9,7 @@ function ActionFeedBack($element, $options){
 ActionFeedBack.prototype = {
 	DEFAULTS: {
 		lockEvent: false,
-		feedBackClass: 'feedback'
+		prefix: 'feedback'
 	}.
 	setListener: function($timeout){
 		this.element.on(this.eventHandler, function(event){
@@ -33,12 +33,12 @@ ActionFeedBack.prototype = {
 		var position = getEventPosition(event, 15);
 		if($state){
 		    this.createFeedBackElement(position.timestamp);
-		    element.data('feedback-loading', $state);
+		    element.data(ActionFeedBack.prototype.DEFAULTS.prefix+'-loading', $state);
 		    element.attr('aria-pressed', $state);
 		}else{
-		    element.removeClass(this.options.feedBackClass+'-active');
+		    element.removeClass(this.options.prefix+'-active');
 		    element.attr('aria-pressed', false);
-		    element.data('feedback-loading', false);
+		    element.data(ActionFeedBack.prototype.DEFAULTS.prefix+'-loading', false);
 		    this.removeFeedBackElement(position.timestamp);
 		}
 	},
@@ -64,8 +64,8 @@ ActionFeedBack.prototype = {
 	createFeedBackElement: function(timestamp){
 		var clickArea = document.createElement('div');
 		clickArea.setAttribute('id', timestamp);
-		clickArea.setAttribute('data-click-'+this.options.feedBackClass, '');
-		clickArea.setAttribute('class', this.options.feedBackClass+'-active');
+		clickArea.setAttribute('data-click-'+this.options.prefix, '');
+		clickArea.setAttribute('class', this.options.prefix+'-active');
 
 		objBody.append(clickArea);
 
@@ -136,11 +136,17 @@ ActionFeedBack.prototype = {
 	function Plugin($option) {
 		return this.each(function () {
 			var self    = $(this);
-			var data    = self.data("feedback-loading");
-			var options = $.extend({}, ActionFeedBack.prototype.DEFAULTS, self.data(), typeof $option == "object" && $option);
+			var data    = self.data(ActionFeedBack.prototype.DEFAULTS.prefix+"-loading");
+			var options = $.extend({}, 
+			       ActionFeedBack.prototype.DEFAULTS, 
+			       self.data(), typeof $option == "object" && $option
+			);
 
 			if (!data) {
-				self.data("feedback-loading", (data = new ActionFeedBack(this, options)));
+				self.data(
+					ActionFeedBack.prototype.DEFAULTS.prefix+"-loading", 
+					(data = new ActionFeedBack(this, options))
+				);
 			}
 			if (typeof $option == "string"){
 				data[options]($option);
