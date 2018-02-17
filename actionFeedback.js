@@ -136,11 +136,11 @@ ActionFeedBack.prototype = {
 	function Plugin($option) {
 		return this.each(function () {
 			var self    = $(this);
-			var data    = self.data("click-feedback");
+			var data    = self.data("feedback-loading");
 			var options = $.extend({}, ActionFeedBack.prototype.DEFAULTS, self.data(), typeof $option == "object" && $option);
 
 			if (!data) {
-				self.data("click-feedback", (data = new ActionFeedBack(this, options)));
+				self.data("feedback-loading", (data = new ActionFeedBack(this, options)));
 			}
 			if (typeof $option == "string"){
 				data[options]($option);
