@@ -13,10 +13,10 @@ Just add '<script src="../actionFeedback.js"></script>' anywhere after jQuery.
 };`    
 
 //js  
-`$('#selector').actionFeedback({$options}),`
+`$('#selector').actionFeedback({$options})`
 
 //css
-SCSS styles provided or build your own
+`SCSS styles provided or build your own`
 
 ## Credits
 
