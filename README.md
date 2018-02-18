@@ -1,5 +1,5 @@
 # actionFeedback
-Adds feedback to click or touch events
+Adds visual feedback to click or touch events
 
 Demo: https://guruwanabe.github.io/actionFeedback/
 
