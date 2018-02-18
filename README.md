@@ -1,6 +1,8 @@
 # actionFeedback
 Adds a feeback element to the user click events 
 
+Demo: https://guruwanabe.github.io/actionFeedback/
+
 ## Installation
 Just add '<script src="../actionFeedback.js"></script>' anywhere after jQuery.
 
