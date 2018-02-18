@@ -1,24 +1,27 @@
-function ActionFeedBack($element, $options){
-	this.options = $.extend({}, ActionFeedBack.DEFAULTS, $options)		
+function EventFeedBack($element, $options){
+	this.options = $.extend({}, EventFeedBack.DEFAULTS, $options)		
 	this.element = $($element) || $(document.body);
 	this.eventHandler = 'click';
 
 	this.setListener();
 }
 
-ActionFeedBack.DEFAULTS = {
+EventFeedBack.DEFAULTS = {
 	lockEvent: false,
 	prefix: 'feedback',
 	timeout: 1000,
-	offset: 25,
 	zindex: 1060,
 	size: {
 		width: 50,
 		height: 50
+	},
+	offset: {
+		top: 25,
+		left: 25
 	}
 };
 
-ActionFeedBack.prototype = {
+EventFeedBack.prototype = {
 	setListener: function(){
 		var t = this;
 		this.element.on(this.eventHandler, function(event){
@@ -65,11 +68,11 @@ ActionFeedBack.prototype = {
 		})
 	},
 	getEventPosition: function($event, $offset) {
-		$offset = ($offset || 0);
+		$offset = ($offset || {top:0, left: 0});
 		var event = $event;
 		return {
-			x: (event.pageX) - $offset,
-			y: (event.pageY) - $offset,
+			x: (event.pageX) - $offset.left,
+			y: (event.pageY) - $offset.top,
 			timestamp: event.timeStamp
 		}
 	}, 
@@ -103,11 +106,11 @@ ActionFeedBack.prototype = {
 	function Plugin($option) {
 		return this.each(function () {
 			var self    = $(this);
-			var data    = self.data('actionFeedback');
-			var options = $.extend({}, ActionFeedBack.DEFAULTS, self.data(), typeof $option == "object" && $option);
+			var data    = self.data('eventFeedback');
+			var options = $.extend({}, EventFeedBack.DEFAULTS, self.data(), typeof $option == "object" && $option);
 
 			if (!data) {
-				self.data('actionFeedback', (data = new ActionFeedBack(this, options)));
+				self.data('eventFeedback', (data = new EventFeedBack(this, options)));
 			}
 			if (typeof $option == "string"){
 				data[options]($option);
@@ -115,10 +118,10 @@ ActionFeedBack.prototype = {
 		});
 	}
 
-	var old = $.fn.actionFeedback;
+	var old = $.fn.eventFeedback;
 
-	$.fn.actionFeedback             = Plugin;
-	$.fn.actionFeedback.Constructor = ActionFeedBack;
+	$.fn.eventFeedback             = Plugin;
+	$.fn.eventFeedback.Constructor = EventFeedBack;
 
 	/**
 	 * actionFeedback No Conflict
@@ -127,8 +130,8 @@ ActionFeedBack.prototype = {
 	 *
 	 * =======================
 	 */
-	$.fn.actionFeedback.noConflict = function () {
-		$.fn.actionFeedback = old;
+	$.fn.eventFeedback.noConflict = function () {
+		$.fn.eventFeedback = old;
 		return this;
 	};
 
