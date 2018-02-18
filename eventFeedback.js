@@ -26,6 +26,7 @@ EventFeedBack.prototype = {
 		var t = this;
 		this.element.on(this.eventHandler, function(event){
 			var self = $(this);
+			console.log(event.type)
 			if (t.options.lockEvent && self.data('feedback-loading') == true) {
 				return; // do nothing, bubble away
 			}
