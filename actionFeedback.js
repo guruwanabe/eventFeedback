@@ -10,11 +10,14 @@ ActionFeedBack.DEFAULTS = {
 	lockEvent: false,
 	prefix: 'feedback',
 	timeout: 1000,
-	offset: 25,
 	zindex: 1060,
 	size: {
 		width: 50,
 		height: 50
+	},
+	offset: {
+		top: (this.options.size.height / 2),
+		left: (this.options.size.width / 2)
 	}
 };
 
@@ -67,11 +70,11 @@ ActionFeedBack.prototype = {
 		})
 	},
 	getEventPosition: function($event, $offset) {
-		$offset = ($offset || 0);
+		$offset = ($offset || {width:0, height:0});
 		var event = $event;
 		return {
-			x: (event.pageX) - $offset,
-			y: (event.pageY) - $offset,
+			x: (event.pageX) - $offset.width,
+			y: (event.pageY) - $offset.height,
 			timestamp: event.timeStamp
 		}
 	}, 
