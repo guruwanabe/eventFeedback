@@ -47,12 +47,12 @@ EventFeedBack.prototype = {
 		var position = this.getEventPosition(event, $offset);
 		if($state){
 			this.createFeedBackElement(Math.round(position.timestamp), position.x, position.y);
-			element.data(ActionFeedBack.DEFAULTS.prefix+'-loading', $state);
+			element.data(EventFeedBack.DEFAULTS.prefix+'-loading', $state);
 			element.attr('aria-pressed', $state);
 		}else{
 			element.removeClass(this.options.prefix+'-active');
 			element.attr('aria-pressed', false);
-			element.data(ActionFeedBack.DEFAULTS.prefix+'-loading', false);
+			element.data(EventFeedBack.DEFAULTS.prefix+'-loading', false);
 			this.removeFeedBackElement(Math.round(position.timestamp));
 		}
 	},
@@ -80,7 +80,7 @@ EventFeedBack.prototype = {
 		var clickArea = document.createElement('div');
 		var objBody = $(document.body);
 
-		clickArea.setAttribute('id', 'event'+ActionFeedBack.DEFAULTS.prefix+timestamp);
+		clickArea.setAttribute('id', 'event'+EventFeedBack.DEFAULTS.prefix+timestamp);
 		clickArea.setAttribute('data-event-'+this.options.prefix, 'true');
 		clickArea.setAttribute('class', this.options.prefix+'-active');
 
@@ -89,7 +89,7 @@ EventFeedBack.prototype = {
 		return this.setPosition($(clickArea), $x, $y);
 	},
 	removeFeedBackElement: function(timestamp){
-		return document.getElementById('event'+ActionFeedBack.DEFAULTS.prefix+timestamp).remove();
+		return document.getElementById('event'+EventFeedBack.DEFAULTS.prefix+timestamp).remove();
 	}
 };
 
