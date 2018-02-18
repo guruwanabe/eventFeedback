@@ -1,13 +1,13 @@
-# actionFeedback
+# eventFeedback
 Adds visual feedback to click or touch events
 
-Demo: https://guruwanabe.github.io/actionFeedback/
+Demo: https://guruwanabe.github.io/eventFeedback/
 
 ## Installation
-Just add '<script src="../actionFeedback.js"></script>' anywhere after jQuery.
+Just add '<script src="../eventFeedback.js"></script>' anywhere after jQuery.
 
 ## Usage
-`ActionFeedBack.DEFAULTS = {
+`EventFeedBack.DEFAULTS = {
 	lockEvent: false,
 	prefix: 'feedback',
 	timeout: 1000,
@@ -15,7 +15,7 @@ Just add '<script src="../actionFeedback.js"></script>' anywhere after jQuery.
 };`    
 
 //js  
-`$('#selector').actionFeedback({$options})`
+`$('#selector').eventFeedback({$options})`
 
 //css
 `SCSS styles provided or build your own`
