@@ -27,7 +27,7 @@ ActionFeedBack.prototype = {
 			t.toggleFeedback(self, event, true, t.options.offset);
 			
 			if($.support.transition){
-				self.one('bsTransitionEnd', function () {
+				self.one('fdTransitionEnd', function () {
 					t.toggleFeedback(self, event, false, t.options.offset);
 				}).emulateTransitionEnd(t.options.timeout);
 			}else{
@@ -133,7 +133,7 @@ ActionFeedBack.prototype = {
 	// ============================================================
 
 	function transitionEnd() {
-		var el = document.createElement('bootstrap')
+		var el = document.createElement('feedback')
 
 		var transEndEventNames = {
 			WebkitTransition : 'webkitTransitionEnd',
@@ -155,7 +155,7 @@ ActionFeedBack.prototype = {
 	$.fn.emulateTransitionEnd = function (duration) {
 		var called = false;
 		var $el = this;
-		$(this).one('bsTransitionEnd', function () { called = true });
+		$(this).one('fdTransitionEnd', function () { called = true });
 		var callback = function () { if (!called) $($el).trigger($.support.transition.end) };
 		setTimeout(callback, duration);
 		return this
@@ -166,7 +166,7 @@ ActionFeedBack.prototype = {
 
 		if (!$.support.transition) return;
 
-		$.event.special.bsTransitionEnd = {
+		$.event.special.fdTransitionEnd = {
 			bindType: $.support.transition.end,
 			delegateType: $.support.transition.end,
 			handle: function (e) {
