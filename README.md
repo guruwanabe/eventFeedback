@@ -1,5 +1,5 @@
 # actionFeedback
-Adds a feeback element to the user click events 
+Adds feedback to click/touch events
 
 Demo: https://guruwanabe.github.io/actionFeedback/
 
