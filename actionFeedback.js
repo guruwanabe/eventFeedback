@@ -73,8 +73,8 @@ ActionFeedBack.prototype = {
 		$offset = ($offset || {top:0, left:0});
 		var event = $event;
 		return {
-			x: (event.pageX) - $offset.width,
-			y: (event.pageY) - $offset.height,
+			x: (event.pageX) - $offset.left,
+			y: (event.pageY) - $offset.top,
 			timestamp: event.timeStamp
 		}
 	}, 
