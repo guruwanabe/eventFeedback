@@ -74,7 +74,7 @@ ActionFeedBack.prototype = {
 		var objBody = $(document.body);
 
 		clickArea.setAttribute('id', 'event'+ActionFeedBack.DEFAULTS.prefix+timestamp);
-		clickArea.setAttribute('data-click-'+this.options.prefix, '');
+		clickArea.setAttribute('data-click-'+this.options.prefix, 'true');
 		clickArea.setAttribute('class', this.options.prefix+'-active');
 
 		objBody.append(clickArea);
