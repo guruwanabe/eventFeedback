@@ -10,7 +10,12 @@ ActionFeedBack.DEFAULTS = {
 	lockEvent: false,
 	prefix: 'feedback',
 	timeout: 1000,
-	offset: 15
+	offset: 25,
+	zindex: 1060,
+	size: {
+		width: 50,
+		height: 50
+	}
 };
 
 ActionFeedBack.prototype = {
@@ -51,13 +56,14 @@ ActionFeedBack.prototype = {
 		}
 	},
 	setPosition: function(el, $x, $y){
+		var t = this;
 		return el.css({
 			'top': $y,
 			'left':$x,
-			'width': 50,
-			'height': 50,
+			'width': t.options.size.width,
+			'height': t.options.size.height,
 			'position': 'absolute',
-			'z-index': 1060
+			'z-index': t.options.size.zindex
 		})
 	},
 	getEventPosition: function($event, $offset) {
