@@ -15,10 +15,8 @@ ActionFeedBack.DEFAULTS = {
 
 ActionFeedBack.prototype = {
 	setListener: function(){
-		console.log( this.element)
 		var t = this;
 		this.element.on(this.eventHandler, function(event){
-			console.log('click')
 			var self = $(this);
 			if (t.options.lockEvent && self.data('feedback-loading') == true) {
 				return; // do nothing, bubble away
