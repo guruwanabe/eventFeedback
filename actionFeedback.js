@@ -16,8 +16,8 @@ ActionFeedBack.DEFAULTS = {
 		height: 50
 	},
 	offset: {
-		top: (this.options.size.height / 2),
-		left: (this.options.size.width / 2)
+		top: 25,
+		left: 25
 	}
 };
 
