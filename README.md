@@ -21,11 +21,9 @@ Just add '<script src="../actionFeedback.js"></script>' anywhere after jQuery.
 `SCSS styles provided or build your own`
 
 ## Credits
-
 Bogdan Stanciu  
 bp.stanciu@gmail.com  
 @bp.stanciu  
 
 ## License
-
-MIT
+Apache 
