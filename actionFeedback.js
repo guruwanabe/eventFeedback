@@ -70,7 +70,7 @@ ActionFeedBack.prototype = {
 		})
 	},
 	getEventPosition: function($event, $offset) {
-		$offset = ($offset || {0, 0});
+		$offset = ($offset || {top:0, left:0});
 		var event = $event;
 		return {
 			x: (event.pageX) - $offset.width,
