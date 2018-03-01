@@ -112,9 +112,6 @@ EventFeedBack.prototype = {
 			if (!data) {
 				self.data('eventFeedback', (data = new EventFeedBack(this, options)));
 			}
-			if (typeof $option == "string"){
-				data[options]($option);
-			}
 		});
 	}
 
