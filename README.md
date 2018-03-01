@@ -1,5 +1,5 @@
 # eventFeedback
-Adds visual feedback to click or touch events
+Adds visual feedback to click or touch events, fully customizabile with css!
 
 Demo: https://guruwanabe.github.io/eventFeedback/
 
