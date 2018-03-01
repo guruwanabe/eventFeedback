@@ -31,16 +31,18 @@ EventFeedBack.prototype = {
 			}
 			
 			t.toggleFeedback(self, event, true, t.options.offset);
-			
-			if($.support.transition){
-				self.one('fdTransitionEnd', function () {
-					t.toggleFeedback(self, event, false, t.options.offset);
-				}).emulateTransitionEnd(t.options.timeout);
-			}else{
+					
+			var complete = function(){
 				setTimeout(function(){
 					t.toggleFeedback(self, event, false,  t.options.offset);
 				}, (t.options.timeout))
 			}
+			
+			$.support.transition ? 
+				self.one('fdTransitionEnd', function () {
+					t.toggleFeedback(self, event, false, t.options.offset);
+				}).emulateTransitionEnd(t.options.timeout) : 
+				complete();
 		});
 	},
 	toggleFeedback: function(element, event, $state, $offset){
