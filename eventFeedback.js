@@ -66,7 +66,7 @@ EventFeedBack.prototype = {
 			'width': t.options.size.width,
 			'height': t.options.size.height,
 			'position': 'absolute',
-			'z-index': t.options.size.zindex
+			'z-index': t.options.zindex
 		})
 	},
 	getEventPosition: function($event, $offset) {
